@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests</title>
+    <script src="./js/tenWords.js"></script>
+    <script>
+        //Задача 1. Дано оцінки учня за 5 предметів у 12 бальній шкалі.  
+        //Вивести номери предметів, з яких у учня трійки?
+
+        const marks =[]
+        for (let i = 0; i <5; i++) {
+           var mark = parseFloat(prompt(`Введіть оцінку за ${i+1}-ий предмет`))
+           marks.push(mark)
+        }
+
+        marks.forEach((mark,index)=>{
+            if(mark===3) document.write(`У вас є трійка за ${index+1} предмет<br>`)
+        })
+
+        //Задача 2. Користувач вводить 10 слів. Підрахувати кількість слів, у яких перша літера і остання літера однакові.
+        let tenWords = []
+        for (let i = 0; i < 10; i++) {
+            let enterName = prompt('Enter word', 'anna')
+            tenWords.push(enterName)
+        }
+        let words = tenWords.reduce((prev, word) => {
+            if (word[0] === word[word.length - 1])
+              return  prev += 1
+               else
+               return prev
+        }, 0)
+        document.write(words)
+        
+     
+
+        //Задача 3. Дано послідовність чисел, які згенеровано випадковим чином. Сформувати новий масив
+        // у якому елементи є більшими за перший елемент.
+        let num = new Array(10)
+        num.fill(1) 
+        let num2 = num.map((el, a, i) => a[i] = Math.floor(Math.random() * 100))
+        document.write('Number:')
+        document.write(num2)
+        let res = num2.filter((el, i, a) => el > a[0])
+        document.write('<br>res:')
+        document.write(res)
+
+        // //Задача 4. Усі елементи введеного масиву помножити на 17. 
+        let elements = []
+        let howElements = parseInt(prompt('Введіть скільки чисел в масиві', '6'))
+        for (let i = 0; i < howElements; i++) {
+            elem = parseFloat(prompt('Введіть число'))
+            elements.push(elem)
+        }
+        elements.forEach((number,i,arr) =>  arr[i] *= 17 );
+        document.write(`<br>`)
+        document.write(elements)
+
+
+        //Задача 5. Знайти суму елементів, які знаходяться після елемента зі значенням 78.
+        let number78 = [23, 45, 78, 45, 90, 123, 65, 122]
+        let num_78 = number78.indexOf(78)
+        const sum78 = number78.reduce((prevSum, el, index,arr) => index > num_78 ? prevSum + el : prevSum, 0)
+        document.write(`<br>`)
+        document.write(sum78)
+
+
+    </script>
+</head>
+
+<body>
+    <div id="container">
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        //Урок 17. лекція
+        // let a1 = {
+        //     pr1: 11,
+        //     age: 13,
+        //     vasja: 90
+        // }
+        // for (const key in a1) {
+        //     document.write(`${key} - ${a1[key]}` + '<br>')
+        // }
+
+
+        // Object.keys(a1+'<br>').forEach(key => {
+        //     document.write(`${key} - ${a1[key]}` + '<br>')
+        //  }) 
+
+         //1
+
+
+function Product(productTitle,prodPice,productNumber) {
+    //властивості 
+    this.title = productTitle
+    this.price = prodPice
+    this.number = productNumber
+}
+//методи
+Product.prototype.getTotalPrice = function () {
+    return this.price*this.number
+    
+}
+//перетвлрення у стрінг
+Product.prototype.toString = function () {
+    return `${this.title}:${this.price}`
+    
+}
+//перетворення у число
+Product.prototype.valueOf = function () {
+    return 3
+    
+}
+
+//тестуємо
+let pr1 = new Product('rice',32,5)
+// let res = pr1.getTotalPrice()
+// document.write(`price = ${res}`)
+//до valueof
+// let s = 7*pr1
+// document.write(s)
+document.write(pr1)
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

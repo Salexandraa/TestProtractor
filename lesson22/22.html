@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //урок22. На дз доробити цю задачу. і зробити бібліотеку
+        //створити продуктовий магазин(назва ,ціна ,кількість)+
+        //функ можливості+
+        //фільтрація за ціною
+        //фільр за назвою
+        //фільтр за кількістю
+        //зберігати дані у локак.стор.+
+        // і завантажувати+
+        // class Store {
+        //     constructor(storeTitle) {
+        //         this.storeTitle = storeTitle
+        //         this.loadData()
+        //         // this.products = []
+        //     }
+        //     saveData() {
+        //         localStorage.setItem(this.storeTitle, JCON.stringify(this.products))//зберігає і перетворює у стрінги
+        //     }
+        //     loadData() {
+        //         if (localStorage.getItem(this.storeTitle)) //перевіряємо чи є продукти у сторі(щоб не було помилки)
+        //             this.products = JSON.parse(localStorage.getItem(this.storeTitle))//завантажуємо із сторі і стрінг у обєкт
+        //         else this.products = []//список продуктів порожній
+        //     }
+
+        //     addProduct(prodTitle, prodPrice, prodCount) {
+        //         this.products.push(
+        //             {
+        //                 title: prodTitle,
+        //                 price: prodPrice,
+        //                 count: prodCount
+        //             }
+        //         )
+        //     }
+        //     filterByPrice(searchPrice) {
+        //         return this.products.filter(prod => prod.price === searchPrice)
+        //         this.render()
+
+        //     filterByTitle(searchTitle) {
+        //         return this.products.filter(prod => prod.title === searchTitle)
+
+
+        //     }
+        //     filterByCount(searchCount) {
+        //         return this.products.filter(prod => prod.count === searchCount)
+
+        //     }
+
+        //     onAdd() {
+        //         const prodTitle = this.inpTitle.value
+        //         const prodPrice = parseInt(this.inpPrice.value)
+        //         const prodCount = parseInt(this.inpCount.value)
+        //         this.addProduct(prodTitle, prodPrice, prodCount)
+        //         this.render()
+        //     }
+        //     createinputForm() {
+        //         let div = document.createElement('div')
+
+        //         let label = document.createElement('label')
+        //         label.innerText = 'Title'
+        //         this.inpTitle = document.createElement('input')
+        //         label.appendChild(this.inpTitle)
+        //         div.appendChild(label)
+
+        //         label = document.createElement('label')
+        //         label.innerText = 'Price'
+        //         this.inpPrice = document.createElement('input')
+        //         label.appendChild(this.inpPrice)
+        //         div.appendChild(label)
+
+        //         label = document.createElement('label')
+        //         label.innerText = 'Count'
+        //         this.inpCount = document.createElement('input')
+        //         label.appendChild(this.inpCount)
+        //         div.appendChild(label)
+
+        //         const btn = document.createElement('button')
+        //         btn.innerText = 'Add'
+        //         btn.onclick = this.onAdd.bind(this)
+        //         div.appendChild(btn)
+
+        //         let br = document.createElement('br')
+
+        //         div.appendChild(br)
+
+        //         return div
+        //     }
+
+        //     getProductsTable(productsList) {
+        //         const table = document.createElement('table')
+        //         let tr = document.createElement('tr')
+        //         let th = document.createElement('th')
+        //         th.innerText = 'Title'
+        //         tr.appendChild(th)
+
+        //         th = document.createElement('th')
+        //         th.innerText = 'Price'
+        //         tr.appendChild(th)
+
+        //         th = document.createElement('th')
+        //         th.innerText = 'Count'
+        //         tr.appendChild(th)
+        //         table.appendChild(tr)
+
+        //         for (let i = 0; i < productsList.length; i++) {
+
+        //             tr = document.createElement('tr')
+        //             let td = document.createElement('td')
+        //             td.innerText = productsList[i].title
+        //             tr.appendChild(td)
+
+        //             td = document.createElement('td')
+        //             td.innerText = productsList[i].price
+        //             tr.appendChild(td)
+
+        //             td = document.createElement('td')
+        //             td.innerText = productsList[i].count
+        //             tr.appendChild(td)
+
+        //             table.appendChild(tr)
+        //         }
+        //         return table
+        //     }
+
+
+        //     render(containerId) {
+        //         let container
+        //         if (containerId) {
+        //             container = document.getElementById(containerId)
+        //             this.container = container
+        //         }
+        //         else
+        //             container = this.container
+        //         container.innerHTML = ''
+
+        //         let inpForm = this.createinputForm()
+        //         container.appendChild(inpForm)
+        //         const tabl = this.getProductsTable(this.products)
+        //         container.appendChild(tabl)
+
+
+        //         // this.inputPrice = document.createElement('input')
+        //         // this.inputPrice.onchange = this.filterByPrice(this.value)
+        //         // container.appendChild(this.inputPrice)
+
+        //         const tbl = this.getProductsTable(this.products)
+        //         const tblFilterByPrice = this.getProductsTable(this.filterByPrice(12000))
+        //         this.getProductsTable(this.filterByPrice(12000))
+        //         container.appendChild(tblFilterByPrice)
+
+
+
+        //         const tbl2 = this.getProductsTable(this.products)
+        //         const tblFilterByCount = this.getProductsTable(this.filterByCount(10))
+        //         this.getProductsTable(this.filterByCount(10))
+        //         container.appendChild(tblFilterByCount)
+
+        //         const tbl3 = this.getProductsTable(this.products)
+        //         const tblFilterByTitle = this.getProductsTable(this.filterByTitle('rice'))
+        //         this.getProductsTable(this.filterByTitle('rice'))
+        //         container.appendChild(tblFilterByTitle)
+
+        //     }
+        // }
+        // window.onload = function () {
+        //     let store = new Store('products')
+        //     store.render('container')
+
+
+        // }
+
+        // let products = [
+        //     {
+        //         title: "Tv",
+        //         price: "5000",
+        //         count: "10"
+        //     },
+        //     {
+        //         title: "Notebook",
+        //         price: "12000",
+        //         count: "27"
+        //     },
+        //     {
+        //         title: "phone",
+        //         price: "7000",
+        //         count: "100"
+        //     },
+        //     {
+        //         title: "mouse",
+        //         price: "200",
+        //         count: "67"
+        //     }
+        // ]
+
+        //2.створити біблітеку(назва автора ,назва книги ,кількість в наявності,ціна книги)
+        //функ можливості
+        //фільтрація за ціною 
+        //зберігати дані у локак.стор.
+        // і завантажувати
+        class LibraryShop {
+            constructor(storeBook) {
+                this.storeBook = storeBook
+                this.loadData()
+            }
+            savedData() {
+                localStorage.setItem(this.storeBook, JCON.stringify(this.books))//зберігіє і перетворює у стрінги
+            }
+            loadData() {
+                if (localStorage.getItem(this.storeBook))//перевіряємо чи є продукти у сторі(щоб не було помилки)
+                    this.books = JCON.parse(localStorage.getItem(this.storeBook))//завантажаємо із сторі і стрінг у обєкти
+                else this.books = []//список продуктів пооржній
+            }
+            addBooks(bookAuthor, bookTitle, bookCount, bookPrice) {
+                this.books.push(
+                    {
+                        author: bookAuthor,
+                        title: bookTitle,
+                        count: bookCount,
+                        price: bookPrice
+                    }
+                )
+            }
+      
+       
+            sortByCount() {
+                return this.books.sort((count1, count2) => count1.count - count2.count)
+
+            }
+            sortByPrice() {
+                return this.books.sort((price1, price2) => price1.price - price2.price)
+
+            }
+            onAdd() {
+                const bookAuthor = this.inpAuthor.value
+                const bookTitle = this.inpTitle.value
+                const bookCount = this.inpCount.value
+                const bookPrice = this.inpPrice.value
+                this.addBooks(bookAuthor, bookTitle, bookCount, bookPrice)
+                this.render()
+            }
+            createInputForm() {
+                let div = document.createElement('div')
+
+                let label = document.createElement('label')
+                label.innerText = 'bookAuthor'
+                this.inpAuthor = document.createElement('input')
+                label.appendChild(this.inpAuthor)
+                div.appendChild(label)
+
+                label = document.createElement('label')
+                label.innerText = 'Title'
+                this.inpTitle = document.createElement('input')
+                label.appendChild(this.inpTitle)
+                div.appendChild(label)
+
+                label = document.createElement('label')
+                label.innerText = 'Count'
+                this.inpCount = document.createElement('input')
+                label.appendChild(this.inpCount)
+                div.appendChild(label)
+
+                label = document.createElement('label')
+                label.innerText = 'Price'
+                this.inpPrice = document.createElement('input')
+                label.appendChild(this.inpPrice)
+                div.appendChild(label)
+
+                const btn = document.createElement('button')
+                btn.innerText = 'Add'
+                btn.onclick = this.onAdd.bind(this)
+                div.appendChild(btn)
+
+                let br = document.createElement('br')
+
+                div.appendChild(br)
+
+                return div
+            }
+            getProductsTable(bookList) {
+                const table = document.createElement('table')
+
+                let tr = document.createElement('tr')
+                let th = document.createElement('th')
+                th.innerText = 'Author'
+                tr.appendChild(th)
+
+                th = document.createElement('th')
+                th.innerText = 'Title'
+                tr.appendChild(th)
+
+                th = document.createElement('th')
+                th.innerText = 'Count'
+                tr.appendChild(th)
+
+                th = document.createElement('th')
+                th.innerText = 'Price'
+                tr.appendChild(th)
+
+                table.appendChild(tr)
+
+                for (let i = 0; i < bookList.length; i++) {
+
+                    tr = document.createElement('tr')
+                    let td = document.createElement('td')
+                    td.innerText = bookList[i].author
+                    tr.appendChild(td)
+
+                    td = document.createElement('td')
+                    td.innerText = bookList[i].title
+                    tr.appendChild(td)
+
+                    td = document.createElement('td')
+                    td.innerText = bookList[i].count
+                    tr.appendChild(td)
+
+                    td = document.createElement('td')
+                    td.innerText = bookList[i].price
+                    tr.appendChild(td)
+
+                    table.appendChild(tr)
+                }
+                return table
+            }
+
+
+            render(containerId) {
+                let container
+                if (containerId) {
+                    container = document.getElementById(containerId)
+                    this.container = container
+                }
+                else
+                    container = this.container
+                container.innerHTML = ''
+
+                let inpForm = this.createInputForm()
+                container.appendChild(inpForm)
+                let newTable = this.getProductsTable(this.books)
+                container.appendChild(newTable)
+
+                const tbl3 = this.getProductsTable(this.books)
+                const tblSortByCount = this.getProductsTable(this.sortByCount())
+                this.getProductsTable(this.sortByCount())
+                container.appendChild(tblSortByCount)
+
+                const tbl4 = this.getProductsTable(this.books)
+                const tblSortByPrice = this.getProductsTable(this.sortByPrice())
+                this.getProductsTable(this.sortByPrice())
+                container.appendChild(tblSortByPrice)
+            }
+        }
+
+        let books = [
+            {
+                author: "Джоан Роулінг",
+                title: "Гаррі Потер",
+                count: "5",
+                price: "540"
+
+            },
+            {
+                author: "Сьюзен Кейн",
+                title: "Сила інтровертів",
+                count: "2",
+                price: "340"
+
+            },
+            {
+                author: "Юваль Ной Харарі",
+                title: "Сапіенс",
+                count: "6",
+                price: "220"
+
+            }
+        ]
+
+        window.onload = function () {
+            let shop = new LibraryShop('books')
+            shop.render('container')
+        }
+
+        
+    </script>
+</head>
+
+<body>
+    <div id="container">
+
+    </div>
+
+</body>
+
+</html>

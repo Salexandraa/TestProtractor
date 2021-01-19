@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //лекція 21 (інкапсуляція)
+        // function Rectangle(a, b) {
+        //     let _sideA //1.Опис закритого поля
+        //     Object.defineProperty(this, 'sideA', { //2. Опис пget,set
+        //         get: function () { return _sideA },
+        //         set: function (val) {
+        //             if (val >= 0) _sideA = val
+        //             else
+        //                 throw new Error('The vale is incorrect')
+        //         }
+        //     })
+        //     this.sideA = a //Перевірка поч.значення
+        //     let _sideB
+        //     Object.defineProperty(this, 'sideB', {
+        //         get: function () { return _sideB },
+        //         set: function (val) {
+        //             if (val >= 0) _sideB = val
+        //             else
+        //                 throw new Error('The value is incorrect')
+        //         }
+        //     })
+        //     this.sideB = b
+        // }
+        // Rectangle.prototype.toString = function () {
+        //     return `${this.sideA} - ${this.sideB}`
+        // }
+        // let r1 = new Rectangle(2, 7)
+        // document.write(r1 + '<br>')
+        // r1._sideA = -70
+        // document.write(r1 + '<br>')
+        // console.log(r1);
+        // ////////////////теж саме з класом
+        // class Rectangle {
+        //     constructor(a, b) {
+        //         this.sideA = a //Перевірка поч.значення
+        //         this.sideB = b
+        //     }
+        //     #_sideA
+        //     get sideA() { return this.#_sideA }
+        //     set sideA(val) {
+        //         if (val >= 0) this.#_sideA = val
+        //         else
+        //             throw new Error('The vale is incorrect')
+        //     }
+        //     #_sideB
+        //     get sideB() { return this.#_sideB }
+        //     set sideB(val) {
+        //         if (val >= 0) this.#_sideB = val
+        //         else
+        //             throw new Error('The value is incorrect')
+        //     }
+        //     toString = function () {
+        //         return `${this.sideA} - ${this.sideB}`
+        //     }
+        // }
+        // let r1 = new Rectangle(2, 7)
+        // document.write(r1 + '<br>')
+        // try {
+        //     r1.sideA = -70
+        //     document.write(r1 + '<br>')
+        //     console.log(r1); А
+        // }
+        // catch (error) {
+        //     document.write('error-<br>')
+        // }
+        // finally {
+        //     document.write('the end')
+        // }
+
+        // document.write(r1 + '<br>')
+        // console.log(r1);
+
+
+        // //задача2
+        // class IncreasingCounter {
+        //     #count = 0; //замість _ у нових версіях буде = #(приватне поле)
+        //     get value() {
+        //         console.log('Getting the current value!');
+        //         return this.#count;
+        //     }
+        //     increment(val) {
+        //         this.#count += val;
+        //     }
+        // }
+        // let v = new IncreasingCounter()
+        // document.write(v.value)
+        // v.increment(7)
+        // document.write(v.value)
+
+        
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

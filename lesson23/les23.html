@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // class Parent {
+        //     constructor(a1=11,b1=22) {
+        //         this.a = a1
+        //         this.b = b1
+        //     }
+        //     show() {
+        //         document.write(`a=${this.a}  b=${this.b}`)
+        //     }
+        // }
+        // //-------------
+
+        // class Child extends Parent {
+        //     constructor(a,b,c){
+        //         super(a,b)//викликаємо parent 
+        //         this.c=c
+        //     }
+        //     show() {
+        //         super.show()
+        //         document.write('hello')
+        //     }
+        // }
+
+        // ///-----------------
+        // const ob = new Child(8,6,9)
+        // console.log(ob)
+
+        //гра на вгадування чисел 
+        //властивості
+        //мін межа
+        //макс межа
+        //адреса інпута
+        //методи :
+        //конструктор
+        //метод генерації випадкового числа
+        //метод перевірка числа і виведення вгаданого числа
+        //рендер
+//Гра на вгадування чисел
+//Властивості
+//мін межа
+//макс. межа
+//адр. інпута
+//Методи
+//конструктор
+//метод генерації випадкового числа
+//перевірка числа
+//render
+class Game{
+    constructor(min=1, max=5){
+        this.min=min
+        this.max=max
+    }
+    getRandomNumber(){
+        return Math.floor(this.min+Math.random()*(this.max-this.min+1))
+    }
+    check(){
+        this.userNum=parseInt(this.numInput.value)
+        this.compNum=this.getRandomNumber()
+        const message=`${this.userNum===this.compNum?'Вгадав': 'Не вгадав'}
+        <br>
+        Ваше чило: ${this.userNum} Загадане число: ${this.compNum}
+        `
+        this.messageDiv.innerHTML=message
+    }
+    render(containerId){
+        const container=document.getElementById(containerId)
+        let div= document.createElement('div')
+        div.innerText=`min = ${this.min},  max=${this.max}`
+        container.appendChild(div)
+        div= document.createElement('div')
+        this.numInput=document.createElement('input')
+        div.appendChild(this.numInput)
+        const btn=document.createElement('button')
+        btn.innerText='Check'
+        btn.onclick=this.check.bind(this)
+        div.appendChild(btn)
+        container.appendChild(div)
+        this.messageDiv= document.createElement('div')
+        container.appendChild(this.messageDiv)
+    }
+}
+//----------------
+class ColoredGame extends Game{
+    constructor(min=1, max=5,trueColor='green',falseColor='red'){
+        super(min,max)
+        this.trueColor=trueColor
+        this.falseColor=falseColor
+    }
+    check(){
+        super.check()
+        const color = this.userNum===this.compNum?this.trueColor:this.falseColor
+        this.messageDiv.style.color=color
+    }
+}
+window.onload=function(){
+    // const game= new Game()
+    const game= new ColoredGame()
+    game.render('gamePlace')
+}
+
+
+    </script>
+</head>
+
+<body>
+    <div id="gamePlace">
+
+    </div>
+
+</body>
+
+</html>

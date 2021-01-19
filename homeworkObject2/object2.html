@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //домашка по класам
+        //         Задача. Розробити клас MultChecker для перевірки таблиці множення
+        // Поля	Число, яке перевіряємо (наприклад, перевірка частини таблиці множення на 7)
+        // Кількість правильних відповідей
+        // Кількість неправильних відповідей
+        // Методи	Генерування прикладу (метод випадковим чином визначає друге число, перше число фіксоване)
+        // Перевірка правильності вказаної відповіді
+        // render
+        class MultChecker {
+            constructor(multTableBy) {
+                this.multTableBy = multTableBy
+                this.rightAnswer = 0
+                this.wrongAnswer = 0
+            }
+            getRandomNumber() {
+                return Math.floor(1 + Math.random() * (10 - 1 + 1))
+            }
+
+            onCheckClick() {
+                this.span.innerText = this.multTableBy
+                this.span3.innerText = this.getRandomNumber()
+                const answ = parseFloat(this.inputAnswer.value)
+                if (this.span * this.span3 === answ)
+                    this.rightAnswer++
+                else this.wrongAnswer++
+
+                this.spanRight.innerText = this.rightAnswer
+                this.spanwWrong.innerText = this.wrongAnswer
+            }
+            render() {
+
+                const div = document.getElementById('container')
+                let div1 = document.createElement('div')
+                this.span = document.createElement('span')
+                this.span.innerText = this.multTableBy
+                div1.appendChild(this.span)
+
+                let span2 = document.createElement('span')
+                span2.innerHTML = '*'
+                div1.appendChild(span2)
+
+                this.span3 = document.createElement('span')
+                this.span3.innerText = this.getRandomNumber()
+                div1.appendChild(this.span3)
+
+                let span4 = document.createElement('span')
+                span4.innerHTML = '='
+                div1.appendChild(span4)
+
+                let lbl = document.createElement('label')
+                this.inputAnswer = document.createElement('input')
+                this.inputAnswer.setAttribute('type', 'number')
+                lbl.appendChild(this.inputAnswer)
+                div1.appendChild(lbl)
+
+                div.appendChild(div1)
+
+                const divBtn = document.createElement('div')
+                const btn = document.createElement('button')
+                btn.innerText = 'Перевірити'
+                btn.onclick = this.onCheckClick.bind(this)
+                divBtn.appendChild(btn)
+                div.appendChild(divBtn)
+
+
+                let div2 = document.createElement('div')
+                div2.innerText = 'Кількість правильних відповідей:'
+                this.spanRight = document.createElement('span')
+                div2.appendChild(this.spanRight)
+                div.appendChild(div2)
+
+                let div3 = document.createElement('div')
+                div3.innerText = 'Кількість не правильних відповідей:'
+                this.spanwWrong = document.createElement('span')
+                div3.appendChild(this.spanwWrong)
+                div.appendChild(div3)
+
+            }
+
+        }
+        window.onload = function () {
+            const trainer = new MultChecker(7)
+            trainer.render('trainer')
+        }
+
+        //         Задача. Розробити клас «Бронювання автомобіля»
+        // Поля	Вартість одного дня
+        // Розмір знижки (знижка на кожен день після 10-го дня 5%)
+        // Методи	Визначення вартості
+        // render
+        class CarRental {
+            constructor() {
+                //ціна за один день(різних авто)
+                this.priceOneDay = 1000
+                //сума знижки
+                this.sale = 5
+            }
+            saleCar() {
+                //рахуємо ціну оренди авто зі знижкою
+                return parseFloat(this.priceOneDay / 100 * this.sale)
+            }
+            getTotalSum() {
+                let res = 0
+                let inpValue = parseInt(this.input.value)
+                if (inpValue > 10) //якщо значення з інпута більше за 10
+                    res = parseFloat(this.priceOneDay * 10) + (this.saleCar() * (inpValue - 10))
+
+                else res = parseFloat(this.priceOneDay * inpValue)
+                this.span.innerText = res
+
+            }
+            render() {
+                const d = document.getElementById('cont2')
+
+                const div = document.createElement('div')
+                this.select = document.createElement('select')
+                this.option = document.createElement('option')
+                this.option.value = '0'
+                this.option.innerText = 'Opel'
+                this.select.appendChild(this.option)
+
+                this.option = document.createElement('option')
+                this.option.value = '1'
+                this.option.innerText = 'Kia'
+                this.select.appendChild(this.option)
+
+                this.option = document.createElement('option')
+                this.option.value = '2'
+                this.option.innerText = 'Mersedes'
+                this.select.appendChild(this.option)
+
+                div.appendChild(this.select)
+                d.appendChild(div)
+
+                const divLabel = document.createElement('div')
+                const label = document.createElement('label')
+                label.innerText = 'Кількість днів'
+                this.input = document.createElement('input')
+                this.input.setAttribute('type', 'number')
+                label.appendChild(this.input)
+                divLabel.appendChild(label)
+                d.appendChild(divLabel)
+
+                let divButton = document.createElement('div')
+                let button = document.createElement('button')
+                button.innerText = 'Вартість оренди'
+                button.onclick = this.getTotalSum.bind(this)
+                divButton.appendChild(button)
+                d.appendChild(divButton)
+
+                let divResult = document.createElement('div')
+                divResult.innerText = `Вартість оренди становить:`
+                this.span = document.createElement('span')
+                divResult.appendChild(this.span)
+                d.appendChild(divResult)
+
+            }
+
+        }
+        window.onload = function () {
+            let carRental = new CarRental()
+            carRental.render(carRental)
+
+        }
+
+        //         Задача. Створити об’єкт «Рулетка»
+        // Рулетка		
+        // Поля(властивості)	Масив, у якому зберігаються бали ігрового барабану
+        // Методи (дії)	Метод для випадкового визначення кількості балів
+        // Виведення ігрового барабану на екран (у формі таблиці)
+
+        class Roulette {
+            constructor(numbersArray) {
+                this.numbersArray = numbersArray
+                this.score = 0
+            }
+            getRandomScore() {
+                const rand = Math.floor(Math.random() * this.numbersArray.length)
+                return this.numbersArray[rand]
+            }
+            //Функція, що створює таблицю з балами ігрового барабана
+            render() {
+                const table = document.createElement('table')
+                const tr = document.createElement('tr')
+                for (let i = 0; i < this.numbersArray.length; i++) {
+                    const td = document.createElement('td')
+                    td.innerText = this.numbersArray[i]
+                    tr.appendChild(td)
+                }
+                table.appendChild(tr)
+                return table
+            }
+            //Функція, яку прив"язуємо до кнопки
+            onClick() {
+                const currentScore = this.getRandomScore()
+                this.score += currentScore
+                this.currentSpan.innerText = currentScore
+                this.span.innerText = this.score
+            }
+            //Функція, яка генерує розмітку усієї гри
+            renderRoul() {
+                const div = document.createElement('div')
+                const table = this.render()
+                div.appendChild(table)
+                //Створюємо кнопку
+                const btn = document.createElement('button')
+                btn.innerText = 'Go'
+                btn.onclick = this.onClick.bind(this)
+                div.appendChild(btn)
+                //Виводимо поточна кількість балів
+                const divCurrent = document.createElement('div')
+                divCurrent.innerText = 'Current Score :'
+                this.currentSpan = document.createElement('span')
+                this.currentSpan.innerText = ''
+                divCurrent.appendChild(this.currentSpan)
+
+                div.appendChild(divCurrent)
+                //Виводимо загальна кількість балів
+                const divScore = document.createElement('div')
+                divScore.innerText = 'Score :'
+                this.span = document.createElement('span')
+                this.span.innerText = this.score
+                divScore.appendChild(this.span)
+
+                div.appendChild(divScore)
+
+                return div
+            }
+
+        }
+        window.onload = function () {
+            const roulette = new Roulette([100, -50, 5, 0, 200, -250])
+            document.getElementById('contRoulette').appendChild(roulette.renderRoul())
+        }
+
+
+    </script>
+    <style>
+       td {
+            border: 2px solid black
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+
+    </div>
+    <div id="cont2">
+
+    </div>
+    <div id="contRoulette">
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>final</title>
+  <script src="./kk.js"></script>
+  <script>
+    let workers = [
+      {
+        num: 1,
+        name: 'Ivanov1',
+        cex: 1,
+        salary: 12000
+      },
+      {
+        num: 2,
+        name: 'Ivanov2',
+        cex: 3,
+        salary: 7000
+      },
+      {
+        num: 3,
+        name: 'Ivanov3',
+        cex: 3,
+        salary: 7000
+      },
+      {
+        num: 4,
+        name: 'Ivanov4',
+        cex: 2,
+        salary: 92000
+      },
+    ]
+
+
+    //sort num за число
+    //сортування за зростанням
+    let result = workers.sort((worker1, worker2) => worker1.num - worker2.num)
+
+    //сортування за спаданням
+    let result = workers.sort((worker1, worker2) => worker2.num - worker1.num)
+    //  console.log(result)
+
+    //sort name за стрінг
+    //    //сортування за зростанням
+    let result = workers.sort((worker1, worker2) => {
+      if (worker1.name > workers2.name) return 1
+      if (worker1.name < workers2.name) return -1
+      return 0
+    })
+
+    //    //сортування за спаданням
+    let result = workers.sort((worker1, worker2) => {
+      if (worker1.name > workers2.name) return -1
+      if (worker1.name < workers2.name) return 1
+      return 0
+    })
+
+    //sort num за число
+    //сортування за зростанням
+    let result = workers.sort((worker1, worker2) => worker1.cex - worker2.cex)
+
+    //сортування за спаданням
+    let result = workers.sort((worker1, worker2) => worker2.cex - worker1.cex)
+
+    //сортування за зростанням
+    let result = workers.sort((worker1, worker2) => worker1.salary - worker2.salary)
+
+    //сортування за спаданням
+    let result = workers.sort((worker1, worker2) => worker2.salary - worker1.salary)
+    //  console.log(result)
+    ///----------------фільтрація
+
+    //filter num ( number)
+    //відобразити усіх зі вказаним значенням 2
+    let result = workers.filter(worker => worker.num === 2)
+    //якщо цеха нема то його не покаже,тільки ті у кого є цех
+    let result = workers.filter(worker => worker.cex)
+    //якщо 0 чи пусте значення є (вивести поле)
+    let result = workers.filter(worker => worker.cex !== undefined)
+    //якщо цех є 
+    let result = workers.filter(worker => 'cex' in worker)
+    //відобразити усіх зі вказаним значенням > 2
+    let result = workers.filter(worker => worker.num > 2)
+    //відобразити тих у яких друга буква ж буква v
+    let result = workers.filter(worker => worker.name && worker.name.length > 9 && worker.name[9] === 'v')
+    //Відобразити усіх, у яких є фрагмент (наприклад - 'nov') (з врахуванням регістру)
+    let res = workers.filter(
+      (worker) => worker.name && worker.name.includes("nov")
+    );
+    //Відобразити усіх, у яких є фрагмент (без врахування регістру)
+    let searchFragment = "nOv";
+    const searchText = searchFragment.toLowerCase();
+    let res = workers.filter(
+      (worker) =>
+        worker.name && worker.name.toLowerCase().includes(searchText)
+    );
+    //Відобразити усіх, які починаються з заданого фрагмента
+    let searchFragment = "va";
+    const searchText = searchFragment.toLowerCase();
+    let res = workers.filter(
+      (worker) =>
+        worker.name && worker.name.toLowerCase().startsWith(searchText)
+    );
+    //Відобразити усіх, які закінчуються заданим фрагмента
+    let searchFragment = "ov2";
+    const searchText = searchFragment.toLowerCase();
+    let res = workers.filter(
+      (worker) =>
+        worker.name && worker.name.toLowerCase().endsWith(searchText)
+    );
+    //  Обчислення агрегованих значень
+    // Знайти загальну суму усіх заробітних плат
+    let res = workers.reduce((prevSum, worker) => prevSum + worker.salary || 0, 0)
+    // Знайти максимальну заробітну плату
+    let res = workers.reduce((prevMax, worker) => worker.salary && worker.salary > prevMax ? worker.salary : prevMax, 0)
+    //Знайти мінімальну заробітну плату
+    let res = workers.reduce((prevMin, worker) => worker.salary && worker.salary < prevMin ? worker.salary : prevMin, Number.MAX_VALUE)
+    // Чи у всіх працівників заробітна плата більша за 5000
+    let res = workers.every(worker => worker.salary > 5000)
+    // Чи є такий, у якого заробітна плата більша за 5000
+    let res = workers.some(worker => worker.salary > 5000)
+    //Усім дати надбавку 20%
+    workers.forEach((worker) => (worker.salary *= 1.2));
+    //Зробити новий масив, у якому від заробітних плат забрано податок 20%
+    // let res = workers.map((worker) => worker.salary * 0.8);
+    let res = workers.map((worker) => {
+      let copy = { ...worker };
+      // let copy = JSON.parse(JSON.stringify(worker));
+      // let copy2 = {
+      //   ...worker,
+      //   ...JSON.parse(JSON.stringify(worker))
+      // };
+      copy.salary *= 0.8;
+      return copy;
+    });
+    console.log(res);
+    console.log(workers);
+
+  </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>

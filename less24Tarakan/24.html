@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // class ActiveButtons {
+        //     constructor(buttonsTitles) {
+        //         this.buttonsTitles = buttonsTitles
+        //     }
+        //     click(e) {
+        //         if (e.target.tagName === 'BUTTON') {
+        //             if (this.activeButton) this.activeButton.style.backgroundColor = 'grey'
+        //             this.activeButton = e.target
+        //             this.activeButton.style.backgroundColor = 'red'
+        //         }
+        //     }
+
+        //     render(containerId) {
+        //         const container = document.getElementById(containerId)
+        //         this.buttonsTitles.forEach(title => {
+        //             const btn = document.createElement('button')
+        //             btn.style.backgroundColor = 'grey'
+        //             btn.innerText = title
+        //             container.appendChild(btn)
+
+        //         });
+        //         container.onclick = this.click.bind(this)
+
+        //     }
+        // }
+        // window.onload = function () {
+        //     const btns = new ActiveButtons(['one', 'two', 'three'])
+        //     btns.render('container')
+        // }
+
+        // class ActiveButtons {
+        //     constructor(buttonsTitles) {
+        //         this.buttonsTitles = buttonsTitles
+        //     }
+        //     click(e) {
+        //         if (e.target.tagName === 'BUTTON') {
+        //             if (this.activeButton) this.activeButton.style.backgroundColor = 'grey'
+        //             this.activeButton = e.target
+        //             this.activeButton.style.backgroundColor = 'red'
+        //         }
+        //     }
+
+        //     render(containerId) {
+        //         const container = document.getElementById(containerId)
+        //         this.buttonsTitles.forEach(title => {
+        //             const btn = document.createElement('button')
+        //             btn.style.backgroundColor = 'grey'
+        //             btn.innerText = title
+        //             container.appendChild(btn)
+
+        //         });
+        //         container.onclick = this.click.bind(this)
+
+        //     }
+        // }
+        // window.onload = function () {
+        //     const btns = new ActiveButtons(['one', 'two', 'three'])
+        //     btns.render('container')
+        // }
+
+        // <script>
+        class Tarakan {
+            constructor(imgSrc,width=50,height=50,step=100,speed=200) {
+                this.imgSrc = imgSrc
+                this.width=width
+                this.height=height
+                this.step=step
+                this.speed=speed
+            }
+            move(e) {
+               const shiftLeft=this.step/2 - Math.floor(Math.random()*this.step)
+               const shiftTop=this.step/2 -Math.floor(Math.random()*this.step)
+               this.img.style.left=parseInt(this.img.style.left)+shiftLeft+'px'
+               this.img.style.top=parseInt(this.img.style.top)+shiftTop+'px'
+            }
+            click(){
+                clearInterval(this.timer)
+                this.img.style.border='2px solid red'
+            }
+            render(containerId) {
+                const container = document.getElementById(containerId)
+                this.img= document.createElement('img')
+                this.img.setAttribute('src',this.imgSrc)
+                this.img.style.position='absolute'
+                this.img.style.width=this.width+ 'px'
+                this.img.style.height=this.height+ 'px'
+                this.img.style.left='200px'
+                this.img.style.top='200px'
+                this.img.onclick=this.click.bind(this)
+                container.appendChild(this.img)
+                this.timer= setInterval( this.move.bind(this), this.speed);
+            }
+        }
+        window.onload = function () {
+            for (let i = 0; i < 50; i++) {
+            const tarakan = new Tarakan('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQEA5bwLDDDO2j3sQJ3ILZkeQh9NYj74cf1fw&usqp=CAU')
+            tarakan.render('container')
+            }
+        }
+    </script>
+    </script>
+
+</head>
+
+<body>
+    <div id="container">
+
+    </div>
+
+
+</body>
+
+</html>

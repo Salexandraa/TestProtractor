@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //перша домашка по обєктам
+        //         <!-- Задача. Створити об’єкт «Авто». 
+        // Авто		
+        // Поля(властивості)	Марка
+        // Розмір бака
+        // Кількість наявних літрів
+        // Кількість місць
+        // Кількість пасажирів
+        // Методи (дії)	Заправка на вказану кількість літрів
+        // Виведення кількості пасажирів
+        // Додавання пасажирів
+        // Висадка пасажирів -->
+
+        //властивості обєкта,які можуть бути різні
+        function Cars(brand, tankSize, availableLiters, seat, passengers) {
+            this.brand = brand
+            this.tankSize = tankSize
+            this.liters = parseFloat(availableLiters)
+            this.seat = seat
+            this.passengers = parseInt(passengers)
+
+        }
+        //перевожу у стрінг
+        Cars.prototype.toString = function () {
+            return `${this.brand},${this.tankSize},${this.liters},${this.seat},${this.passengers}`
+        }
+        //рахуємо літри після заправки
+        Cars.prototype.gasStation = function (liter) {
+            if (liter < this.tankSize - this.liters) {
+                this.liters += liter
+                return this.liters
+            }
+            else return false
+        }
+        //рахую пасажирів після їх додавання
+        Cars.prototype.addPassenger = function (numberPassengerAdd) {
+            for (let i = 0; i < this.seat.length; i++) {
+                if (numberPassengerAdd <= this.seat - this.passengers)
+                    this.passengers += numberPassengerAdd
+                return this.passengers
+            }
+            return false
+
+        }
+        //рахую пасажирів після їх виходу
+        Cars.prototype.unloadingPassenger = function (minusPass) {
+            if (minusPass <= this.passengers) {
+                this.passengers -= minusPass
+                return this.passengers
+            }
+            else return false
+        }
+        //вивожу результат
+        let result = new Cars('mersedes', '80', '20', '5', ' 2')
+        document.write('Марка,розмір бака,кількість наявних літрів,кількість місць,кількість пасажирів  =' + result + '<br>')
+        let res2 = result.gasStation(30)
+        document.write('Кількість літрів після заправки =' + res2 + '<br>')
+        let addRes = result.addPassenger(2)
+        document.write('Кількість пасажирів після їх збільшення=' + addRes + '<br>')
+        let unloadingRes = result.unloadingPassenger(1)
+        document.write('Кількість пасажирів після їх виходу = ' + unloadingRes + '<br>')
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

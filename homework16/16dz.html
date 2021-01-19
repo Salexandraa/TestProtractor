@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //дз по функціям(цю треба доробити)
+        // //створюємо таблицю для введення років і прибутків
+        function createTable1() {
+            const year = parseInt(document.getElementById('year').value)
+            const tableBody = document.querySelector('tbody')
+            tableBody.innerHTML = ''
+
+            for (let i = 0; i < year; i++) {
+                const tr = document.createElement('tr')
+                const td = document.createElement('td')
+                const inp = document.createElement('input')
+                inp.setAttribute('type', 'number')
+                td.appendChild(inp)
+                const td2 = document.createElement('td')
+                td2.setAttribute('name', 'twoTd')
+                const inp2 = document.createElement('input')
+                inp2.setAttribute('name', 'num')
+                td2.appendChild(inp2)
+                tr.appendChild(td)
+                tr.appendChild(td2)
+                tableBody.appendChild(tr)
+            }
+        }
+        //таблиця для введення працівників і зарплати
+        function createTable2() {
+            const numberWorkers = parseInt(document.getElementById('numberWorkers').value)
+            const table2 = document.getElementById('table2')
+            const tableBody2 = table2.querySelector('tbody')
+            tableBody2.innerText = ''
+            for (let i = 0; i < numberWorkers; i++) {
+                const tr2 = document.createElement('tr')
+                tr2.setAttribute('name', 'line')
+                const td1Table2 = document.createElement('td')
+                const inpTable2 = document.createElement('input')
+                inpTable2.setAttribute('type', 'text')
+                td1Table2.appendChild(inpTable2)
+                const td2Table2 = document.createElement('td')
+                const inp2Table2 = document.createElement('input')
+                inp2Table2.setAttribute('type', 'number')
+                inp2Table2.setAttribute('name', 'salary')
+                td2Table2.appendChild(inp2Table2)
+                tr2.appendChild(td1Table2)
+                tr2.appendChild(td2Table2)
+                tableBody2.appendChild(tr2)
+            }
+
+        }
+        //функція яка рахує сумарний прибуток
+        function totalProfit(groupInputs) {
+            let total = 0
+            const inputs = document.getElementsByName(groupInputs)
+
+            for (let i = 0; i < inputs.length; i++) {
+                total += parseInt(inputs[i].value)
+
+            }
+            return total
+        }
+        function summa() {
+            let s = 0
+            const inp = totalProfit('num')//викликаю функцію до інпутів з імям num
+            s += inp
+            document.getElementById('totals').innerText = s
+
+        }
+        function taxPrivileage(tax) {
+            let check = 0
+            const inp = document.getElementsByName('tax')
+            if (inp.checked) {
+                check = parseFloat('2')
+            }
+            else check = 1
+            return check
+
+        }
+        //рахую податок,якщо чекнутий інпут то віднімаємо від введеного податку 2
+        function taxes() {
+            let profit = summa
+         
+            const tax = parseFloat(document.getElementById('tax').value)
+            const name = document.getElementsByName('br')
+            const taxPrivilege = taxPrivileage(br)
+            let taxInput = parseInt(profit / parseInt(100) * (tax - taxPrivilege))
+            
+
+            const taxesPaid = document.getElementById('paid').innerText = taxInput
+
+        }
+    
+
+        window.onload = function () {
+            document.getElementById('year').onchange = createTable1
+            document.getElementById('numberWorkers').onchange = createTable2
+            document.getElementById('totalProf').onclick = summa
+            document.getElementById('taxesPaid').onclick = taxes
+            document.getElementById('btn').onclick = filter
+        }
+
+        //задача2
+        // function getTotalSumOfRadioGroup(groupName) {
+        //     let sum = 0
+        //     const inputs = document.getElementsByName(groupName)
+        //     for (let i = 0; i < inputs.length; i++) {
+        //         if (inputs[i].checked) {
+        //             sum += parseFloat(inputs[i].value)
+        //         }
+        //     }
+        //     return sum
+        // }
+        // function getTotalSumOfCheckboxGrouo(group) {
+        //     let s = 0
+        //     const inputs2 = document.getElementsByName(group)
+        //     for (let i = 0; i < inputs2.length; i++) {
+        //         if (inputs2[i].checked) {
+        //             s += parseFloat(inputs2[i].value)
+
+        //         }
+        //     }
+        //     return s
+        // }
+        // function client() {
+        //     const clients = parseInt(document.getElementById('numberClient').value)
+        //     const tableBody = document.querySelector('tbody')
+        //     tableBody.innerHTML = ''
+        //     for (let i = 0; i < clients; i++) {
+        //         const tr = document.createElement('tr')
+        //         const td = document.createElement('td')
+        //         const inp = document.createElement('input')
+        //         inp.setAttribute('type', 'text')
+        //         td.appendChild(inp)
+        //         tr.appendChild(td)
+        //         const td2 = document.createElement('td')
+        //         const inp2 = document.createElement('input')
+        //         inp2.setAttribute('type', 'number')
+        //         td2.appendChild(inp2)
+        //         tr.appendChild(td2)
+        //         tableBody.appendChild(tr)
+        //     }
+
+        // }
+        // function getTotal() {
+        //     let totalSumma = 0
+        //     const clients = document.getElementById('numberClient')
+        //     const numberClient = parseInt(clients.value)
+        //     let hotelRoom = getTotalSumOfRadioGroup('num')
+        //     totalSumma += hotelRoom
+        //     const food = getTotalSumOfCheckboxGrouo('food')
+        //     totalSumma += food
+        //     const different = getTotalSumOfCheckboxGrouo('different')
+        //     totalSumma += different
+        //     totalSumma *= numberClient
+        //     document.getElementById('res').innerText = (`за ${numberClient} клієнтів = ` + totalSumma)
+        // }
+
+
+        // window.onload = function () {
+        //     document.getElementById('numberClient').onchange = client
+        //     document.getElementById('total').onclick = getTotal
+        // }
+
+     </script>
+</head>
+
+<body>
+    <!-- Задача 1. -->
+     <div>
+        <label>Звіт з підприємницької діяльності</label>
+    </div>
+    <div>
+        <label>Кількість років:</label>
+        <input type="number" id="year" value="0" min="0">
+    </div>
+    <div>
+        <table border="2px" id="tbl1">
+            <thead>
+                <tr>
+                    <td>Рік</td>
+                    <td>Розмір прибутку</td>
+                </tr>
+            </thead>
+            <tbody id="tbod">
+
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <label>Податок:</label>
+        <input type="number" id="tax">
+    </div>
+    <div>
+        <label>Чи є податкова пільга(2%):</label>
+        <label> √
+            <input type="radio" name="br" id="taxPrivilege">
+        </label>
+
+    </div>
+    <div>
+        <label>Кількість працівників</label>
+        <input type="number" id="numberWorkers">
+    </div>
+    <div>
+        <table border="2px" id="table2">
+            <thead>
+                <tr>
+                    <td>ПІБ</td>
+                    <td>Заробітня плата</td>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <label>Загальний прибуток за весь період: <button id="totalProf">Обчислити</button></label>
+        <span id="totals"></span>
+
+    </div>
+    <div>
+        Загальна кількість виплачених податків: <button id="taxesPaid">Обчислити</button>
+        <span id="paid"> </span>
+    </div>
+    <div> Сумарна кількість виплачених коштів:<button id="paidMoney">Обчислити</button>
+
+    </div>
+    <div>Фільтр за розмірами заробітньої плати</div>
+    <div>
+        Мінімальне значення
+        <input type="number" id="min">
+    </div>
+    <div>
+        Максимальне значення
+        <input type="number" id="max">
+    </div>
+    <div>
+        <button id="btn">
+            Знайти працівників
+        </button>
+    </div> -->
+<!-- 
+   Задача 2. -->
+    <!-- <h1>Бронювання готельного номера</h1>
+    <div>
+        <label>Кількість клієнтів
+            <input type="number" id="numberClient">
+        </label>
+    </div>
+    <div>
+        <table border="2px">
+            <thead>
+                <tr>
+                    <th>ПІБ</th>
+                    <th>Рік народження</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <hr>
+    <div>
+        <label>Стандарт<input type="radio" name="num" id="breakfast" value="1500"></label>
+        <label>Люкс <input type="radio" name="num" id="lunch" value="2000"></label>
+        <label>Напівлюкс <input type="radio" name="num" id="dinner" value="3000"></label>
+    </div>
+    <hr>
+    <div>
+        <label>Сніданок <input type="checkbox" name="food" id="breakfast" value="150"></label>
+        <label>Обід <input type="checkbox" name="food" id="lunch" value="200"></label>
+        <label>Вечеря <input type="checkbox" name="food" id="dinner" value="300"></label>
+    </div>
+    <hr>
+    <div>
+        <label>Масаж<input type="checkbox" name="different" id="breakfast" value="500"></label>
+        <label>Сауна <input type="checkbox" name="food" id="different" value="500"></label>
+        <label>Міні бар в номері<input type="checkbox" name="food" id="different" value="300"></label>
+    </div>
+    <hr>
+    <div>
+        <button id="total">Розрахувати вартість</button>
+    </div>
+    <div>
+        Повна вартість:<span id="res"></span>
+    </div> 
+
+</body>
+
+</html> -->

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //уурок 19. лекція(класи)
+        // 1
+        // class Range {
+        //     constructor(defaultMin, defaultMax) {
+        //         this.min = defaultMin
+        //         this.max = defaultMax
+        //     }
+        //     isInRange(value) {
+        //         return value >= this.min && value <= this.max
+        //     }
+        //     getRandomValueFromRange(){
+        //         return (
+        //             this.min+Math.floor(Math.random()*this.max-1)
+        //         )
+        //     }
+        // toString() {
+        //   return '[' + this.min + ' ; ' + this.max + ']'
+        // }
+
+        //     checkValue() {
+        //         const userNum = parseInt(this.numberInput.value)
+        //         if (this.isInRange(userNum))
+        //             this.messageDiv.innerText = `Число ${userNum} належить діапазону`
+        //         else this.messageDiv.innerText = `Число ${userNum} не належить діапазону`
+        //     }
+        //     render(containerId) {
+        //         const container = document.getElementById(containerId)
+        //         let div = document.createElement('div')
+        //         let label = document.createElement('label')
+        //         label.innerText = 'Число'
+        //         const input = document.createElement('input')
+        //         input.setAttribute('type', 'number')
+        //         label.appendChild(input)
+        //         this.numberInput = input //зберегли інпут як ід
+        //         div.appendChild(label)
+        //         container.appendChild(div)
+        //         div = document.createElement('div')
+        //         const btn = document.createElement('button')
+        //         btn.innerText = "перевірити"
+        //         btn.onclick = this.checkValue.bind(this)
+        //         div.appendChild(btn)
+        //         container.appendChild(div)
+        //         this.messageDiv = document.createElement('div')
+        //         container.appendChild(this.messageDiv)
+
+        //     }
+        // }
+        // window.onload = function () {
+        //     let r1 = new Range(1, 10)
+        //     r1.render('container')
+        // }
+        // window.onload = function () {
+        //     let r2 = new Range(10, 50)
+        //     r2.render('cont2')
+        // }
+        //задача1 const div = document.getElementById('container')
+        //         let div1 = document.createElement('div')
+        //         div1.innerText='Множник:'
+        //         const span = document.createElement('span')
+        //         span.innerText = this.multTableBy
+        //         div1.appendChild(span)
+        //         span2 = document.createElement('span')
+        //         span2.innerHTML="*"
+        //         div1.appendChild.span2
+
+        class InputTable {
+            constructor(nameTitle, valueTitle, elementsCount) {
+                this.nameTitle = nameTitle
+                this.valueTitle = valueTitle
+                this.elementsCount = elementsCount
+            }
+            getPricesArray() {
+                return this.addresses.map(row => parseFloat(row.inpValueAddr.value))
+            }
+            //доробити
+            getTitlesArray() {
+                return this.addresses.map(column => (column.inpTitleAddr.value))
+            }
+            getObjectsArray() {
+                return this.getPricesArray() + this.getTitlesArray()
+
+            }
+            render(containerId) {
+                const container = document.getElementById(containerId)
+                const table = document.createElement('table')
+                container.appendChild(table)
+                let tr = document.createElement('tr')
+                let th = document.createElement('th')
+                th.innerText = this.nameTitle
+                tr.appendChild(th)
+                th = document.createElement('th')
+                th.innerText = this.valueTitle
+                tr.appendChild(th)
+                table.appendChild(tr)
+                this.addresses = []
+                for (let i = 0; i < this.elementsCount; i++) {
+                    tr = document.createElement('tr')
+                    let td = document.createElement('td')
+                    const inpTitle = document.createElement('input')
+                    td.appendChild(inpTitle)
+                    tr.appendChild(td)
+
+                    td = document.createElement('td')
+                    const inpValue = document.createElement('input')
+                    td.appendChild(inpValue)
+                    tr.appendChild(td)
+
+                    table.appendChild(tr)
+                    this.addresses.push(
+                        {
+                            inpTitleAddr: inpTitle,
+                            inpValueAddr: inpValue
+                        }
+                    )
+                }
+            }
+        }
+        let tb1
+        function onButtonClick() {
+            alert(tb1.getPricesArray())
+
+        }
+        function onBtnClick() {
+            alert(tb1.getTitlesArray())
+        }
+        function onBtn3Click() {
+            alert(tb1.getObjectsArray())
+        }
+
+        window.onload = function () {
+            tb1 = new InputTable('Назва', 'Ціна', 5)
+            tb1.render('container')
+            const btn = document.getElementById('btn')
+            btn.onclick = onButtonClick
+            const btn2 = document.getElementById('btn2')
+            btn2.onclick = onBtnClick
+            const btn3 = document.getElementById('btn3')
+            btn3.onclick = onBtn3Click
+
+        }
+    </script>
+</head>
+
+<body>
+
+
+
+    <div id="container">
+
+    </div>
+    <button id="btn">
+        Отримати ціни товарів
+    </button>
+    <button id="btn2">
+        Отримати назви товарів
+
+    </button>
+    <button id="btn3">
+        Отримати назви і ціни товарів
+    </button>
+    <div id="cont2">
+
+    </div>
+</body>
+
+</html>
